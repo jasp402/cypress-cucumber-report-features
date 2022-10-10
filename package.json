@@ -1,11 +1,10 @@
 {
   "name": "cypress-cucumber-report-features",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Cypress Cucumber report Features",
   "main": "report-base.js",
   "bin": {
-    "report": "./bin/report-base.js",
-    "report-table": "./bin/report-table.js"
+    "report": "./bin/index.js"
   },
   "scripts": {
     "start": "node cucumber-html-reports.js",
@@ -32,6 +31,7 @@
   },
   "dependencies": {
     "ascii-table3": "^0.7.7",
+    "inquirer": "^8.0.0",
     "js-packtools": "^2.3.18",
     "yargs": "^17.6.0"
   },
