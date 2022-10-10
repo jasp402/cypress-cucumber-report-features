@@ -10,7 +10,6 @@ const getCypressVersion = (strOut) => {
     let binaryVersion = String(strOut).split('\n').filter(x => x.indexOf('Cypress binary version:') > -1)[0];
     console.log(binaryVersion);
     let version = binaryVersion.split(': ')[1].split('.')[0];
-    console.log(version);
     if (Number(version) >= 9) {
         pathE2E = 'integration';
     } else if (Number(version) >= 10) {
