@@ -5,17 +5,16 @@ const {clearFolder}                = require('js-packtools')();
 const {AsciiTable3, AlignmentEnum} = require('ascii-table3');
 const utils                        = require('./utils');
 
-const ROOT_PATH                    = __dirname + '/../cypress/integration';
-const REPORT_PATH                  = __dirname + '/../report-feature';
-const SUMMARY_PATH                 = __dirname + '/../report-feature/summaries.txt';
-const SUMMARY_PROCESS_PATH         = __dirname + '/../report-feature/summaries-process.txt';
-const Report                       = require('./cucumber-summary-report-features');
+const ROOT_PATH            = __dirname + '/../../cypress/integration';
+const REPORT_PATH          = __dirname + '/../../report-feature';
+const SUMMARY_PATH         = __dirname + '/../../report-feature/summaries.txt';
+const SUMMARY_PROCESS_PATH = __dirname + '/../../report-feature/summaries-process.txt';
 
+const Report                       = require('./cucumber-summary-report-features');
 
 let report = new Report();
 
 try {
-
     if (!fs.existsSync(SUMMARY_PATH)) throw 'Require execute first command --base';
     let arInformation = {};
     let lines         = fs.readFileSync(SUMMARY_PATH, 'utf-8').split('\n');

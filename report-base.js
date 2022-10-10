@@ -9,10 +9,10 @@ const yargs = require("yargs");
 // const usage = "\nUsage: tran <lang_name> sentence to be translated";
 // const options = yargs.usage(usage).option("l", {alias:"languages", describe: "List all supported languages.", type: "boolean", demandOption: false }).help(true).argv;
 
-const ROOT_PATH            = __dirname + '/../cypress/integration';
-const REPORT_PATH          = __dirname + '/../report-feature';
-const SUMMARY_PATH         = __dirname + '/../report-feature/summaries.txt';
-const SUMMARY_PROCESS_PATH = __dirname + '/../report-feature/summaries-process.txt';
+const ROOT_PATH            = __dirname + '/../../cypress/integration';
+const REPORT_PATH          = __dirname + '/../../report-feature';
+const SUMMARY_PATH         = __dirname + '/../../report-feature/summaries.txt';
+const SUMMARY_PROCESS_PATH = __dirname + '/../../report-feature/summaries-process.txt';
 
 
 
