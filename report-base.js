@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 const path                         = require('path');
 const fs                           = require('fs');
-const {clearFolder}                = require('js-packtools')();
+const {clearFolder, createFolders} = require('js-packtools')();
 const {AsciiTable3, AlignmentEnum} = require('ascii-table3');
 const utils                        = require('./utils');
 const yargs = require("yargs");
@@ -25,6 +25,7 @@ let report = new Report();
 
 
 try {
+    createFolders(REPORT_PATH);
     clearFolder(REPORT_PATH);
     for (const filePath of report.walkSync(ROOT_PATH)) {
         console.log(filePath)
