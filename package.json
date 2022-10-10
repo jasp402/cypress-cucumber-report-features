@@ -1,8 +1,8 @@
 {
   "name": "cypress-cucumber-report-features",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Cypress Cucumber report Features",
-  "main": "report-base.js",
+  "main": "report-generator.js",
   "bin": {
     "report": ".bin/index.js"
   },

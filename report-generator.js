@@ -1,28 +1,19 @@
-#! /usr/bin/env node
 const path                         = require('path');
 const fs                           = require('fs');
 const {clearFolder, createFolders} = require('js-packtools')();
 const {AsciiTable3, AlignmentEnum} = require('ascii-table3');
 const utils                        = require('./utils');
-const yargs                        = require("yargs");
 
-// const usage = "\nUsage: tran <lang_name> sentence to be translated";
-// const options = yargs.usage(usage).option("l", {alias:"languages", describe: "List all supported languages.", type: "boolean", demandOption: false }).help(true).argv;
+const REPORT_PATH                  = __dirname + '/../../report-feature';
+const SUMMARY_PATH                 = __dirname + '/../../report-feature/summaries.txt';
+const SUMMARY_PROCESS_PATH         = __dirname + '/../../report-feature/summaries-process.txt';
+const Report                       = require('./cucumber-summary-report-features');
 
-const ROOT_PATH            = __dirname + '/../../cypress/integration';
-const REPORT_PATH          = __dirname + '/../../report-feature';
-const SUMMARY_PATH         = __dirname + '/../../report-feature/summaries.txt';
-const SUMMARY_PROCESS_PATH = __dirname + '/../../report-feature/summaries-process.txt';
+let report                         = new Report();
 
-
-const Report = require('./cucumber-summary-report-features');
-
-
-let report = new Report();
-
-
-const createReportBase = () => {
+const createReportBase = (pathE2E = 'integration') => {
     try {
+        const ROOT_PATH = `${__dirname}/../../cypress/${pathE2E}`;
         createFolders(REPORT_PATH);
         clearFolder(REPORT_PATH);
         for (const filePath of report.walkSync(ROOT_PATH)) {
@@ -49,6 +40,7 @@ const createReportBase = () => {
         console.error(e);
     }
 }
+
 const createReportTable = () => {
     try {
         if (!fs.existsSync(SUMMARY_PATH)) throw 'Require execute first command --base';
@@ -83,8 +75,6 @@ const createReportTable = () => {
     }
 }
 
-
-// module.exports = createReportBase;
 exports.report = {
     createReportBase,
     createReportTable
