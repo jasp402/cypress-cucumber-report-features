@@ -2,10 +2,14 @@
   "name": "cypress-cucumber-report-features",
   "version": "1.0.1",
   "description": "Cypress Cucumber report Features",
-  "main": "generate-reports.js",
+  "main": "report-base.js",
+  "bin": {
+    "report": "./bin/report-base.js",
+    "report-table": "./bin/report-table.js"
+  },
   "scripts": {
     "start": "node cucumber-html-reports.js",
-    "poststart": "node generate-reports.js"
+    "poststart": "node report-base.js"
   },
   "repository": {
     "type": "git",
@@ -28,7 +32,8 @@
   },
   "dependencies": {
     "ascii-table3": "^0.7.7",
-    "js-packtools": "^2.3.18"
+    "js-packtools": "^2.3.18",
+    "yargs": "^17.6.0"
   },
   "license": "ISC",
   "bugs": {
