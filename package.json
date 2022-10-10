@@ -1,10 +1,11 @@
 {
   "name": "cypress-cucumber-report-features",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Cypress Cucumber report Features",
   "main": "generate-reports.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node cucumber-html-reports.js",
+    "poststart": "node generate-reports.js"
   },
   "repository": {
     "type": "git",
