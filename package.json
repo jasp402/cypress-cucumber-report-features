@@ -1,0 +1,37 @@
+{
+  "name": "cypress-cucumber-report-features",
+  "version": "1.0.0",
+  "description": "Cypress Cucumber report Features",
+  "main": "generate-reports.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jasp402/cypress-cucumber-report-features.git"
+  },
+  "keywords": [
+    "cypress",
+    "cucumber",
+    "e2e",
+    "test",
+    "QA",
+    "jasp402",
+    "javascript",
+    "js"
+  ],
+  "author": {
+    "name": "Jesús Antonio Pérez Sandoval",
+    "email": "jesus.perez@culqi.com",
+    "url": "http://jasp402.com/"
+  },
+  "dependencies": {
+    "ascii-table3": "^0.7.7",
+    "js-packtools": "^2.3.18"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jasp402/cypress-cucumber-report-features/issues"
+  },
+  "homepage": "https://github.com/jasp402/cypress-cucumber-report-features#readme"
+}
