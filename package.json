@@ -1,8 +1,8 @@
 {
   "name": "cypress-cucumber-report-features",
-  "version": "1.0.11",
+  "version": "1.0.12-alpha",
   "description": "Cypress Cucumber report Features",
-  "main": "report-generator.js",
+  "main": "lib/report-generator.js",
   "bin": {
     "report": ".bin/index.js"
   },
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "ascii-table3": "^0.7.7",
+    "gherkin-parse": "^1.0.6",
     "inquirer": "^8.0.0",
     "js-packtools": "^2.3.18",
     "yargs": "^17.6.0"

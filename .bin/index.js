@@ -1,10 +1,12 @@
 #! /usr/bin/env node
-const report     = require('../report-generator');
-const inquirer   = require('inquirer');
-const {execSync} = require('child_process');
-let cmd          = `npx cypress --version`;
-let strOut       = execSync(cmd);
-let pathE2E      = undefined;
+const report          = require('../lib/report-generator');
+const {createFolders} = require('js-packtools')();
+const utils           = require('../utils');
+const inquirer        = require('inquirer');
+const {execSync}      = require('child_process');
+let cmd               = `npx cypress --version`;
+let strOut            = execSync(cmd);
+let pathE2E           = undefined;
 
 const getCypressVersion = (strOut) => {
     let binaryVersion = String(strOut).split('\n').filter(x => x.indexOf('Cypress binary version:') > -1)[0];
@@ -22,17 +24,31 @@ console.log('--- Welcome to the generator Report ---');
 const questions = [
     {
         type   : 'list',
-        name   : 'report',
-        message: 'You have chosen the creation of:',
-        choices: ['base', 'Table of Scenarios'],
+        name   : 'options',
+        message: utils.titleMini+'\nYou have chosen the creation of:',
+        choices: [
+            '[1] - Generate list Features',
+            '[2] - Generate list of Scenarios by Features',
+            '[3] - Generate list of only Scenarios',
+            '[4] - Generate Summary Table'],
     },
 ];
 inquirer.prompt(questions).then(answers => {
-        console.info('Answer:', answers);
-        if (answers.report === 'base') {
-            report.report.createReportBase(pathE2E);
+        createFolders(utils.REPORT_PATH);
+
+        if (answers.options === '[1] - Generate list Features') {
+            report.report.reportListFeatures(pathE2E);
+        }
+        else if(answers.options === '[2] - Generate list of Scenarios by Features'){
+            report.report.reportListScenariosByFeatures(pathE2E);
+        }
+        else if(answers.options === '[3] - Generate list of only Scenarios'){
+            report.report.reportListScenarios(pathE2E);
         }
         else if (answers.report === 'Table of Scenarios') {
-            report.report.createReportTable();
+            report.report.reportSummaryTable(pathE2E);
+        }
+        else{
+            console.log('Select a option');
         }
     });
