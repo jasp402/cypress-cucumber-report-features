@@ -25,7 +25,7 @@ const questions = [
     {
         type   : 'list',
         name   : 'options',
-        message: utils.titleMini+'\nYou have chosen the creation of:',
+        message: utils.titleMini2+'\nYou have chosen the creation of:',
         choices: [
             '[1] - Generate list Features',
             '[2] - Generate list of Scenarios by Features',
