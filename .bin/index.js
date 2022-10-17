@@ -45,7 +45,7 @@ inquirer.prompt(questions).then(answers => {
         else if(answers.options === '[3] - Generate list of only Scenarios'){
             report.report.reportListScenarios(pathE2E);
         }
-        else if (answers.report === '[4] - Generate Summary Table') {
+        else if (answers.options === '[4] - Generate Summary Table') {
             report.report.reportSummaryTable(pathE2E);
         }
         else{
