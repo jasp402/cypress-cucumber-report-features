@@ -1,6 +1,6 @@
 {
   "name": "cypress-cucumber-report-features",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "Cypress Cucumber report Features",
   "main": "lib/report-generator.js",
   "bin": {

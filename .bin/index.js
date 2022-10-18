@@ -4,13 +4,14 @@ const {createFolders} = require('js-packtools')();
 const utils           = require('../utils');
 const inquirer        = require('inquirer');
 const {execSync}      = require('child_process');
+const package         = require('../package.json')
 let cmd               = `npx cypress --version`;
 let strOut            = execSync(cmd);
 let pathE2E           = undefined;
 
 const getCypressVersion = (strOut) => {
     let binaryVersion = String(strOut).split('\n').filter(x => x.indexOf('Cypress binary version:') > -1)[0];
-    console.log(binaryVersion);
+    console.log(`--- ${binaryVersion}`);
     let version = binaryVersion.split(': ')[1].split('.')[0];
     if (Number(version) <= 9) {
         pathE2E = 'integration';
@@ -20,12 +21,12 @@ const getCypressVersion = (strOut) => {
 }
 getCypressVersion(strOut);
 
-console.log('--- Welcome to the generator Report ---');
+console.log(`--- Generator Report Version: ${package.version}`);
 const questions = [
     {
         type   : 'list',
         name   : 'options',
-        message: utils.titleMini2+'\nYou have chosen the creation of:',
+        message: `${utils.titleMini2}\nYou have chosen the creation of:'`,
         choices: [
             '[1] - Generate list Features',
             '[2] - Generate list of Scenarios by Features',
