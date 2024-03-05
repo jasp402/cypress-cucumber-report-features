@@ -1,6 +1,6 @@
 {
   "name": "cypress-cucumber-report-features",
-  "version": "1.0.20",
+  "version": "1.1.0",
   "description": "Cypress Cucumber report Features",
   "main": "lib/report-generator.js",
   "bin": {
@@ -25,15 +25,15 @@
   ],
   "author": {
     "name": "Jesús Antonio Pérez Sandoval",
-    "email": "jesus.perez@culqi.com",
-    "url": "http://jasp402.com/"
+    "email": "jasp402@gmail.com",
+    "url": "https://jasp402.com/"
   },
   "dependencies": {
-    "ascii-table3": "^0.7.7",
-    "gherkin-parse": "^1.0.6",
-    "inquirer": "^8.0.0",
+    "ascii-table3": "^0.9.0",
+    "gherkin-parse": "^1.0.8",
+    "inquirer": "^9.2.15",
     "js-packtools": "^2.3.18",
-    "yargs": "^17.6.0"
+    "yargs": "^17.7.2"
   },
   "license": "ISC",
   "bugs": {

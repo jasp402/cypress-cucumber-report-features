@@ -2,54 +2,55 @@
 const report          = require('../lib/report-generator');
 const {createFolders} = require('js-packtools')();
 const utils           = require('../utils');
-const inquirer        = require('inquirer');
-const {execSync}      = require('child_process');
 const package         = require('../package.json')
-let cmd               = `npx cypress --version`;
-let strOut            = execSync(cmd);
-let pathE2E           = undefined;
-
-const getCypressVersion = (strOut) => {
-    let binaryVersion = String(strOut).split('\n').filter(x => x.indexOf('Cypress binary version:') > -1)[0];
-    console.log(`--- ${binaryVersion}`);
-    let version = binaryVersion.split(': ')[1].split('.')[0];
-    if (Number(version) <= 9) {
-        pathE2E = 'integration';
-    } else if (Number(version) >= 10) {
-        pathE2E = 'e2e';
-    }
-}
-getCypressVersion(strOut);
 
 console.log(`--- Generator Report Version: ${package.version}`);
-const questions = [
+console.log(`${utils.titleMini2}\n`);
+
+const questions   = [
+    {
+        type   : 'list',
+        name   : 'projectType',
+        choices: [
+            '[1] - Cypress < v10',
+            '[2] - Cypress ≥ v10',
+            '[3] - Cypress-craft',
+        ],
+        message: `select the project platform:`,
+        default: '[1] - Cypress'
+    },
     {
         type   : 'list',
         name   : 'options',
-        message: `${utils.titleMini2}\nYou have chosen the creation of:'`,
+        message: `You have chosen the creation of:'`,
         choices: [
             '[1] - Generate list Features',
             '[2] - Generate list of Scenarios by Features',
             '[3] - Generate list of only Scenarios',
-            '[4] - Generate Summary Table'],
-    },
+            '[4] - Generate Summary Table'
+        ],
+        default: '[1] - Generate list Features'
+    }
 ];
-inquirer.prompt(questions).then(answers => {
-        createFolders(utils.REPORT_PATH);
+const projectType = {
+    '[1] - Cypress < v10': 'integration',
+    '[2] - Cypress ≥ v10': 'e2e',
+    '[3] - Cypress-craft': 'tests',
+};
+const actions     = {
+    '[1] - Generate list Features'                : (typeProject) => report.reportListFeatures(typeProject),
+    '[2] - Generate list of Scenarios by Features': (typeProject) => report.reportListScenariosByFeatures(typeProject),
+    '[3] - Generate list of only Scenarios'       : (typeProject) => report.reportListScenarios(typeProject),
+    '[4] - Generate Summary Table'                : (typeProject) => report.reportSummaryTable(typeProject)
+};
 
-        if (answers.options === '[1] - Generate list Features') {
-            report.report.reportListFeatures(pathE2E);
-        }
-        else if(answers.options === '[2] - Generate list of Scenarios by Features'){
-            report.report.reportListScenariosByFeatures(pathE2E);
-        }
-        else if(answers.options === '[3] - Generate list of only Scenarios'){
-            report.report.reportListScenarios(pathE2E);
-        }
-        else if (answers.options === '[4] - Generate Summary Table') {
-            report.report.reportSummaryTable(pathE2E);
-        }
-        else{
-            console.log('Select a option');
-        }
+async function main() {
+    const inquirer = await import('inquirer');
+    const prompt   = inquirer.default.prompt;
+    prompt(questions).then(answers => {
+        createFolders(utils.REPORT_PATH);
+        actions[answers.options](projectType[answers.projectType]);
     });
+}
+
+main();
