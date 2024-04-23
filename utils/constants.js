@@ -8,6 +8,7 @@ module.exports = Object.freeze({
     FEATURES_FILE_PATH          : path.join(cwd, 'report-feature', 'featureList.txt'),
     FEATURES_SCENERIES_FILE_PATH: path.join(cwd, 'report-feature', 'featureSceneriesList.txt'),
     SCENERIES_FILE_PATH         : path.join(cwd, 'report-feature', 'SceneriesList.txt'),
-    SUMMARY_PATH                : `${__dirname}/../../../report-feature/summaries.txt`,
-    SUMMARY_PROCESS_PATH        : `${__dirname}/../../../report-feature/summaries-process.txt`,
+    SUMMARY_PATH                : `${cwd}/report-feature/summaries.txt`,
+    SUMMARY_PROCESS_PATH        : `${cwd}/report-feature/summaries-process.txt`,
+    SUMMARY_PROCESS_PATH_HTML   : `${cwd}/report-feature/summaries-report.html`,
 });
