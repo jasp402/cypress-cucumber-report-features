@@ -10,5 +10,5 @@ module.exports = Object.freeze({
     SCENERIES_FILE_PATH         : path.join(cwd, 'report-feature', 'SceneriesList.txt'),
     SUMMARY_PATH                : `${cwd}/report-feature/summaries.txt`,
     SUMMARY_PROCESS_PATH        : `${cwd}/report-feature/summaries-process.txt`,
-    SUMMARY_PROCESS_PATH_HTML   : `${cwd}/report-feature/summaries-report.html`,
+    SUMMARY_PROCESS_PATH_HTML   : `${cwd}/report-feature/index.html`,
 });
