@@ -2,9 +2,9 @@
 const report          = require('../lib/report-generator');
 const {createFolders} = require('js-packtools')();
 const utils           = require('../utils');
-const package         = require('../package.json')
+const pkg         = require('../package.json')
 
-console.log(`--- Generator Report Version: ${package.version}`);
+console.log(`--- Generator Report Version: ${pkg.version}`);
 console.log(`${utils.titleMini2}\n`);
 
 const questions   = [
@@ -53,4 +53,33 @@ async function main() {
     });
 }
 
-main();
+
+const args   = process.argv.slice(2);
+let errorParams = false;
+const params = args.reduce((acc, arg) => {
+    let [key, value] = arg.split(':');
+    key              = key.replace('--', '');
+    if (!['projectType', 'options'].includes(key)){
+        errorParams = true;
+    }
+    acc[key] = value;
+    return acc;
+}, {});
+console.log(params); //[ '--projectType', '3', '--options', '4' ]
+
+if(Object.keys(params).length === 0 || errorParams){
+    main();
+} else {
+    createFolders(utils.REPORT_PATH);
+    let projectTypeKey = Object.keys(projectType)[params.projectType-1];
+    let type = projectType[projectTypeKey];
+
+    let actionsKey = Object.keys(actions)[params.options - 1];
+
+    console.log(`projectType: ${type}`);
+    console.log(`actionsKey: ${actionsKey}`);
+
+    actions[actionsKey](type);
+
+}
+
