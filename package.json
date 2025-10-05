@@ -30,8 +30,8 @@
   },
   "dependencies": {
     "ascii-table3": "^0.9.0",
-    "gherkin-parse": "^1.0.8",
-    "inquirer": "^9.2.15",
+    "@cucumber/gherkin": "^24.0.0",
+    "inquirer": "^9.2.20",
     "js-packtools": "^2.3.18",
     "yargs": "^17.7.2"
   },
